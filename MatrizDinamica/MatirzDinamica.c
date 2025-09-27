@@ -1,44 +1,43 @@
 #include "matrizDinamica.h"
+int alocaMatriz(matriz *arrays)
+{
 
-int** alocaMatriz(int linha, int coluna){
-    int **matriz = (int**)malloc(sizeof(int*)*linha);
-    if(matriz != NULL){
-
-    for(int i=0; i< linha;i++){
-
-            matriz[i] = (int*)malloc(sizeof(int)*coluna);
-
-    }
+    arrays->matriz = (int**)malloc(sizeof(int*)*arrays->linha);
+    if(arrays->matriz == NULL)
+            return 1; //ERRO
+    for(int i=0;i<arrays->coluna;i++){
+        arrays->matriz[i] = (int*)malloc(sizeof(int)*arrays->coluna);
 
     }
-    return matriz;
-
+    return 0; //Sucesso
 }
 
-int preencheMatriz(int **matriz, int linha, int coluna){
-   if(matriz == NULL){
-    return 1;   //ERRO
-   }
-    for(int i=0; i< linha;i++){
-        for(int j=0;j<coluna;j++){
-            printf("Digite um valor para a posicao [%d][%d]: ", i, j);
-            scanf("%d", &matriz[i][j]);
+
+int preencheMatriz(matriz *arrays)
+{
+
+    if(arrays->matriz == NULL)
+            return 1; //ERRO
+ for(int i=0;i<arrays->linha;i++){
+        for(int j=0;j<arrays->linha;j++){
+              printf("Digite um valor para a posicao [%d][%d]: ", i, j);
+            scanf("%d", &arrays->matriz[i][j]);
         }
-      }
 
-    return 0;   //Função bem sucedida
-
-}
-
-int ExibeMatriz(int ** matriz, int linha, int coluna){
- if(matriz == NULL){
-    return 1; //Erro
  }
- for(int i=0;i<linha;i++){
-            for(int j=0;j<coluna;j++){
-                printf("%d ", matriz[i][j]);
-            }
-            printf("\n");
-    }
-return 0;//Sucesso
+ return 0; //Sucesso
 }
+
+int ExibeMatriz(matriz *arrays)
+{
+    if(arrays->matriz==NULL) return 1;//ERRO
+    for(int i=0;i<arrays->linha;i++){
+        for(int j=0;j<arrays->coluna;j++){
+            printf("%d ", arrays->matriz[i][j]);
+
+        }
+        printf("\n");
+    }
+    return 0;
+}
+

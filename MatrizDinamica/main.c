@@ -1,12 +1,20 @@
 #include "matrizDinamica.h"
 int main()
 {
-    int **matriz;
-    int linha =3;
-    int coluna = 3;
-    matriz = alocaMatriz(linha, coluna);
-    preencheMatriz(matriz, linha, coluna);
 
-    ExibeMatriz(matriz, linha, coluna);
+
+    matriz arrays;
+    matriz *ptr;
+    ptr = &arrays;
+    arrays.linha = 2;
+    arrays.coluna = 2;
+
+alocaMatriz(ptr);
+preencheMatriz(ptr);
+ExibeMatriz(ptr);
+
+
+
+
     return 0;
 }
